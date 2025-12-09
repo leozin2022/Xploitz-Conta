@@ -26,7 +26,7 @@ const fixedProfiles: FakeProfile[] = [
     mother: "Vitor Carvalho",
     cpf: "334.***.***-07",
     rg: "40.***.***-*",
-    bank: "NUBANK",
+    bank: "CARTAO", // Alterado para CARTAO
     account: "********"
   },
   {
@@ -36,7 +36,7 @@ const fixedProfiles: FakeProfile[] = [
     mother: "Pedro Martins",
     cpf: "991.***.***-87",
     rg: "05.***.***-*",
-    bank: "BRADESCO",
+    bank: "CARTAO", // Alterado para CARTAO
     account: "********"
   },
   {
@@ -46,7 +46,17 @@ const fixedProfiles: FakeProfile[] = [
     mother: "Maria da Silva",
     cpf: "123.***.***-45",
     rg: "12.***.***-*",
-    bank: "INTER",
+    bank: "CARTAO", // Alterado para CARTAO
+    account: "********"
+  },
+  {
+    id: 1003,
+    name: "Mariana Souza",
+    dob: "22/08/1988",
+    mother: "Fernanda Souza",
+    cpf: "456.***.***-12",
+    rg: "33.***.***-*",
+    bank: "CARTAO", // Alterado para CARTAO
     account: "********"
   },
   // Para adicionar mais pessoas, copie o bloco acima (do { até o },) e cole aqui
@@ -57,7 +67,7 @@ const PayloadModal: React.FC<PayloadModalProps> = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      // Aqui ele carrega a sua lista fixa em vez de gerar aleatório
+      // Carrega a lista fixa definida acima
       setData(fixedProfiles);
     }
   }, [isOpen]);
@@ -108,54 +118,4 @@ const PayloadModal: React.FC<PayloadModalProps> = ({ isOpen, onClose }) => {
                     href="https://www.paypal.com/br/home" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="px-6 py-2 bg-green-600 hover:bg-green-500 text-black font-bold font-mono text-sm uppercase tracking-wider transition-all hover:shadow-[0_0_15px_rgba(34,197,94,0.4)] flex items-center gap-2 cursor-pointer no-underline"
-                >
-                    <DollarSign size={16} /> BUY NOW (XMR)
-                </a>
-            </div>
-        </div>
-
-        {/* Data Table */}
-        <div className="flex-1 overflow-auto scrollbar-thin scrollbar-thumb-green-900 scrollbar-track-black p-4">
-            <table className="w-full text-left border-collapse">
-                <thead className="sticky top-0 bg-black z-10 shadow-lg">
-                    <tr className="text-[10px] md:text-xs text-green-600 font-mono uppercase tracking-wider border-b border-green-800">
-                        <th className="p-3">ID</th>
-                        <th className="p-3">Full Name</th>
-                        <th className="p-3">Date of Birth</th>
-                        <th className="p-3">Mother's Name</th>
-                        <th className="p-3 text-red-400"><Lock size={10} className="inline mr-1"/> CPF (Gov ID)</th>
-                        <th className="p-3 text-red-400"><Lock size={10} className="inline mr-1"/> RG (State ID)</th>
-                        <th className="p-3">Bank</th>
-                        <th className="p-3 text-red-400"><Lock size={10} className="inline mr-1"/> CC / Account</th>
-                    </tr>
-                </thead>
-                <tbody className="font-mono text-xs md:text-sm text-gray-300">
-                    {data.map((profile) => (
-                        <tr key={profile.id} className="border-b border-green-900/20 hover:bg-green-900/10 transition-colors group">
-                            <td className="p-3 text-gray-600 group-hover:text-green-500">{profile.id}</td>
-                            <td className="p-3 font-bold">{profile.name}</td>
-                            <td className="p-3 text-gray-400">{profile.dob}</td>
-                            <td className="p-3 text-gray-400">{profile.mother}</td>
-                            <td className="p-3 text-gray-500 tracking-widest">{profile.cpf}</td>
-                            <td className="p-3 text-gray-500 tracking-widest">{profile.rg}</td>
-                            <td className="p-3 text-blue-300">{profile.bank}</td>
-                            <td className="p-3 text-gray-500 tracking-widest font-bold">{profile.account}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-
-        {/* Footer Status */}
-        <div className="bg-black border-t border-green-900/50 p-2 px-4 flex justify-between items-center text-[10px] text-green-700 font-mono">
-            <div>RECORDS_LOADED: {data.length}/{data.length}</div>
-            <div className="animate-pulse">WAITING_FOR_PAYMENT...</div>
-        </div>
-
-      </div>
-    </div>
-  );
-};
-
-export default PayloadModal;
+                    className="px-6 py-2 bg-green-600 hover:bg-green
