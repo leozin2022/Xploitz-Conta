@@ -19,7 +19,7 @@ interface FakeProfile {
 
 // --- ÁREA DE EDIÇÃO: LISTA DE 30 PESSOAS FICTÍCIAS ---
 const fixedProfiles: FakeProfile[] = [
-  { id: 1000, name: "Ana Beatriz", dob: "03/01/2001", mother: "Vitor Carvalho", cpf: "334.***.***-07", rg: "40.***.***-*", bank: "CARTAO", account: "********" },
+  { id: 1000, name: "Francisco Garcia", dob: "03/01/2001", mother: "Vitor Carvalho", cpf: "334.***.***-07", rg: "40.***.***-*", bank: "CARTAO", account: "********" },
   { id: 1001, name: "Carlos Jose", dob: "07/11/1977", mother: "Pedro Martins", cpf: "991.***.***-87", rg: "05.***.***-*", bank: "CARTAO", account: "********" },
   { id: 1002, name: "João da Silva", dob: "15/05/1995", mother: "Maria da Silva", cpf: "123.***.***-45", rg: "12.***.***-*", bank: "CARTAO", account: "********" },
   { id: 1003, name: "Mariana Souza", dob: "22/08/1988", mother: "Fernanda Souza", cpf: "456.***.***-12", rg: "33.***.***-*", bank: "CARTAO", account: "********" },
