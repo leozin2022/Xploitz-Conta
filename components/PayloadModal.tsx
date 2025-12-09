@@ -17,50 +17,48 @@ interface FakeProfile {
   account: string;
 }
 
-const firstNames = ["Ana", "Bruno", "Carlos", "Daniela", "Eduardo", "Fernanda", "Gabriel", "Helena", "Igor", "Julia", "Lucas", "Mariana", "Nicolas", "Olivia", "Pedro", "Rafael", "Sofia", "Thiago", "Vitor", "Yasmin"];
-const lastNames = ["Silva", "Santos", "Oliveira", "Souza", "Pereira", "Lima", "Carvalho", "Ferreira", "Ribeiro", "Almeida", "Costa", "Gomes", "Martins", "Araujo"];
-
-const generateFakeData = (count: number): FakeProfile[] => {
-  const profiles: FakeProfile[] = [];
-  
-  for (let i = 0; i < count; i++) {
-    const fn = firstNames[Math.floor(Math.random() * firstNames.length)];
-    const ln = lastNames[Math.floor(Math.random() * lastNames.length)];
-    const mfn = firstNames[Math.floor(Math.random() * firstNames.length)]; // Mother's first name
-    const mln = lastNames[Math.floor(Math.random() * lastNames.length)]; // Mother's last name
-    
-    // Generate dates between 1970 and 2005
-    const year = Math.floor(Math.random() * (2005 - 1970 + 1)) + 1970;
-    const month = Math.floor(Math.random() * 12) + 1;
-    const day = Math.floor(Math.random() * 28) + 1;
-    
-    // Masked CPF: 123.***.***-99
-    const cpfStart = Math.floor(Math.random() * 999).toString().padStart(3, '0');
-    const cpfEnd = Math.floor(Math.random() * 99).toString().padStart(2, '0');
-    
-    // Masked RG: 12.***.***-*
-    const rgStart = Math.floor(Math.random() * 99).toString().padStart(2, '0');
-    
-    profiles.push({
-      id: 1000 + i,
-      name: `${fn} ${ln}`,
-      dob: `${day.toString().padStart(2,'0')}/${month.toString().padStart(2,'0')}/${year}`,
-      mother: `${mfn} ${mln}`,
-      cpf: `${cpfStart}.***.***-${cpfEnd}`,
-      rg: `${rgStart}.***.***-*`,
-      bank: "CARTAO",
-      account: '********'
-    });
-  }
-  return profiles;
-};
+// --- ÁREA DE EDIÇÃO: MUDE OS DADOS AQUI ---
+const fixedProfiles: FakeProfile[] = [
+  {
+    id: 1000,
+    name: "Ana Lima",
+    dob: "03/01/2001",
+    mother: "Vitor Carvalho",
+    cpf: "334.***.***-07",
+    rg: "40.***.***-*",
+    bank: "NUBANK",
+    account: "********"
+  },
+  {
+    id: 1001,
+    name: "Carlos Gomes",
+    dob: "07/11/1977",
+    mother: "Pedro Martins",
+    cpf: "991.***.***-87",
+    rg: "05.***.***-*",
+    bank: "BRADESCO",
+    account: "********"
+  },
+  {
+    id: 1002,
+    name: "João da Silva",
+    dob: "15/05/1995",
+    mother: "Maria da Silva",
+    cpf: "123.***.***-45",
+    rg: "12.***.***-*",
+    bank: "INTER",
+    account: "********"
+  },
+  // Para adicionar mais pessoas, copie o bloco acima (do { até o },) e cole aqui
+];
 
 const PayloadModal: React.FC<PayloadModalProps> = ({ isOpen, onClose }) => {
   const [data, setData] = useState<FakeProfile[]>([]);
 
   useEffect(() => {
     if (isOpen) {
-      setData(generateFakeData(50));
+      // Aqui ele carrega a sua lista fixa em vez de gerar aleatório
+      setData(fixedProfiles);
     }
   }, [isOpen]);
 
@@ -133,7 +131,7 @@ const PayloadModal: React.FC<PayloadModalProps> = ({ isOpen, onClose }) => {
                     </tr>
                 </thead>
                 <tbody className="font-mono text-xs md:text-sm text-gray-300">
-                    {data.map((profile, idx) => (
+                    {data.map((profile) => (
                         <tr key={profile.id} className="border-b border-green-900/20 hover:bg-green-900/10 transition-colors group">
                             <td className="p-3 text-gray-600 group-hover:text-green-500">{profile.id}</td>
                             <td className="p-3 font-bold">{profile.name}</td>
@@ -151,7 +149,7 @@ const PayloadModal: React.FC<PayloadModalProps> = ({ isOpen, onClose }) => {
 
         {/* Footer Status */}
         <div className="bg-black border-t border-green-900/50 p-2 px-4 flex justify-between items-center text-[10px] text-green-700 font-mono">
-            <div>RECORDS_LOADED: 50/50</div>
+            <div>RECORDS_LOADED: {data.length}/{data.length}</div>
             <div className="animate-pulse">WAITING_FOR_PAYMENT...</div>
         </div>
 
